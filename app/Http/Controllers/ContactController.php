@@ -56,6 +56,18 @@ class ContactController extends Controller
             'phone' => 'required|min:10|max:20',
             'description' => 'nullable',
             'status' => 'required'
+        ],[
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'email' => ':attribute phải là email hợp lệ.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'min' => ':attribute không được ít hơn :min ký tự.'
+        ], [
+            'name' => 'Tên',
+            'email' => 'Email',
+            'phone' => 'Số điện thoại',
+            'description' => 'Mô tả',
+            'status' => 'Trạng thái'
         ]);
 
         Contact::create($dataNew);
@@ -90,6 +102,18 @@ class ContactController extends Controller
             'phone' => 'required|min:10|max:20',
             'description' => 'nullable',
             'status' => 'required'
+        ],[
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'email' => ':attribute phải là email hợp lệ.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'min' => ':attribute không được ít hơn :min ký tự.'
+        ], [
+            'name' => 'Tên',
+            'email' => 'Email',
+            'phone' => 'Số điện thoại',
+            'description' => 'Mô tả',
+            'status' => 'Trạng thái'
         ]);
 
         Contact::findOrFail($id)->update($dataNew);

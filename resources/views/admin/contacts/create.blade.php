@@ -15,9 +15,9 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-@foreach ($errors->all() as $error)
+{{-- @foreach ($errors->all() as $error)
     <li class="text-danger">{{ $error }}</li>
-@endforeach
+@endforeach --}}
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">

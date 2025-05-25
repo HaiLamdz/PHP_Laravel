@@ -14,26 +14,6 @@ class BannerSeeder extends Seeder
      */
     public function run(): void
     {
-        // DB::table('banners')->insert([
-        //     [
-        //         'title' => 'Áo',
-        //         'image' => 'ảnh',
-        //         'status' => true,
-        //         'created_at' => now()
-        //     ],
-        //     [
-        //         'title' => 'Quần',
-        //         'image' => 'ảnh',
-        //         'status' => true,
-        //         'created_at' => now()
-        //     ],
-        //     [
-        //         'title' => 'Mũ',
-        //         'image' => 'ảnh',
-        //         'status' => true,
-        //         'created_at' => now()
-        //     ],
-        // ]);
 
         Banner::factory()->count(10)->create();
     }

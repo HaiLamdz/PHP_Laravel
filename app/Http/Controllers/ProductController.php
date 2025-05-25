@@ -97,43 +97,35 @@ class ProductController extends Controller
             'ma_san_pham' => 'required|string|max:20|unique:products,ma_san_pham',
             'ten_san_pham' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'hinh_anh' => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'hinh_anh' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp',
             'gia_san_pham' => 'required|numeric|min:1',
             'gia_khuyen_mai' => 'nullable|numeric|min:1|lt:gia_san_pham',
             'so_luong' => 'required|integer|min:1',
             'ngay_nhap' => 'required|date',
             'trang_thai' => 'required'
         ], [
-            'ma_san_pham.required' => 'Mã sản phẩm là bắt buộc.',
-            'ma_san_pham.string' => 'Mã sản phẩm phải là chuỗi ký tự.',
-            'ma_san_pham.max' => 'Mã sản phẩm không được vượt quá 20 ký tự.',
-            'ma_san_pham.unique' => 'Mã sản phẩm đã tồn tại.',
-        
-            'ten_san_pham.required' => 'Tên sản phẩm là bắt buộc.',
-            'ten_san_pham.string' => 'Tên sản phẩm phải là chuỗi ký tự.',
-            'ten_san_pham.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
-        
-            'category_id.required' => 'Danh mục sản phẩm là bắt buộc.',
-            'category_id.exists' => 'Danh mục không tồn tại.',
-        
-            'hinh_anh.image' => 'Hình ảnh phải là tệp hình ảnh.',
-            'hinh_anh.mimes' => 'Hình ảnh phải có định dạng jpeg, jpg, png hoặc gif.',
-        
-            'gia_san_pham.required' => 'Giá sản phẩm là bắt buộc.',
-            'gia_san_pham.numeric' => 'Giá sản phẩm phải là số.',
-            'gia_san_pham.min' => 'Giá sản phẩm phải lớn hơn 0.',
-        
-            'gia_khuyen_mai.numeric' => 'Giá khuyến mãi phải là số.',
-            'gia_khuyen_mai.min' => 'Giá khuyến mãi phải lớn hơn 0.',
-            'gia_khuyen_mai.lt' => 'Giá khuyến mãi phải nhỏ hơn giá sản phẩm.',
-        
-            'so_luong.required' => 'Số lượng sản phẩm là bắt buộc.',
-            'so_luong.integer' => 'Số lượng sản phẩm phải là số nguyên.',
-            'so_luong.min' => 'Số lượng sản phẩm phải ít nhất là 1.',
-        
-            'ngay_nhap.required' => 'Ngày nhập là bắt buộc.',
-            'ngay_nhap.date' => 'Ngày nhập phải là ngày hợp lệ.',
-            'trang_thai.required' => 'Trạng thái là bắt buộc.'
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'min' => ':attribute không được nhỏ hơn :min.',
+            'numeric' => ':attribute phải là số.',
+            'integer' => ':attribute phải là số nguyên.',
+            'date' => ':attribute phải là ngày hợp lệ.',
+            'image' => ':attribute phải là hình ảnh.',
+            'mimes' => ':attribute phải có định dạng: :values.',
+            'unique' => ':attribute đã tồn tại.',
+            'exists' => ':attribute không hợp lệ.',
+            'lt' => ':attribute phải nhỏ hơn :other.',
+        ],[
+            'ma_san_pham' => 'Mã sản phẩm',
+            'ten_san_pham' => 'Tên sản phẩm',
+            'category_id' => 'Danh mục',
+            'hinh_anh' => 'Hình ảnh',
+            'gia_san_pham' => 'Giá sản phẩm',
+            'gia_khuyen_mai' => 'Giá khuyến mãi',
+            'so_luong' => 'Số lượng',
+            'ngay_nhap' => 'Ngày nhập',
+            'trang_thai' => 'Trạng thái'
         ]);
         // dd($dataNew);
         // xử lý hình ảnh
@@ -170,6 +162,29 @@ class ProductController extends Controller
             'so_luong' => 'required|integer|min:1',
             'ngay_nhap' => 'required|date',
             'trang_thai' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'min' => ':attribute không được nhỏ hơn :min.',
+            'numeric' => ':attribute phải là số.',
+            'integer' => ':attribute phải là số nguyên.',
+            'date' => ':attribute phải là ngày hợp lệ.',
+            'image' => ':attribute phải là hình ảnh.',
+            'mimes' => ':attribute phải có định dạng: :values.',
+            'unique' => ':attribute đã tồn tại.',
+            'exists' => ':attribute không hợp lệ.',
+            'lt' => ':attribute phải nhỏ hơn :other.',
+        ],[
+            'ma_san_pham' => 'Mã sản phẩm',
+            'ten_san_pham' => 'Tên sản phẩm',
+            'category_id' => 'Danh mục',
+            'hinh_anh' => 'Hình ảnh',
+            'gia_san_pham' => 'Giá sản phẩm',
+            'gia_khuyen_mai' => 'Giá khuyến mãi',
+            'so_luong' => 'Số lượng',
+            'ngay_nhap' => 'Ngày nhập',
+            'trang_thai' => 'Trạng thái'
         ]);
         // dd($dataNew);
         $product = Product::findOrFail($id);

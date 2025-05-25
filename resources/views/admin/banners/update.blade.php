@@ -57,8 +57,8 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Trạng Thái</label>
                                 <select class="form-control" name="status" id="">
-                                    <option value="1" {{$banner->status == 1 ? 'selected' : ''}}>Hoạt Động</option>
-                                    <option value="0" {{$banner->status == 0 ? 'selected' : ''}}>Không Hoạt Động</option>
+                                    <option value="1" {{old('status',$banner->status) == 1 ? 'selected' : ''}}>Hoạt Động</option>
+                                    <option value="0" {{old('status',$banner->status) == 0 ? 'selected' : ''}}>Không Hoạt Động</option>
                                 </select>
                                 @error('status')
                                 <span class="text-danger">{{ $message }}</span>

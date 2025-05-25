@@ -23,13 +23,12 @@ class BannerController extends Controller
 
         // // Tìm kiếm theo trạng thái
         if ($request->filled('status') && $request->filled('status') != '') {
-            $query->where('status', $request->status );
+            $query->where('status', $request->status);
         }
         $banners = $query->paginate(10);
         // dd($banners);
         // dd($query->toSql(), $query->getBindings());
         return view('admin.banners.list', compact('banners'));
-
     }
 
     /**
@@ -47,8 +46,18 @@ class BannerController extends Controller
     {
         $dataNew = $request->validate([
             'title' => 'required|string|max:20',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp',
             'status' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'image' => ':attribute phải là hình ảnh.',
+            'mimes' => ':attribute phải có định dạng: :values.',
+        ], [
+            'title' => 'Tiêu đề',
+            'image' => 'Hình ảnh',
+            'status' => 'Trạng thái'
         ]);
         // dd($dataNew);
         // xử lý hình ảnh
@@ -60,7 +69,6 @@ class BannerController extends Controller
         Banner::create($dataNew);
 
         return redirect()->route('admin.banner.list')->with('success', 'thêm banner thành công');
-
     }
 
     /**
@@ -80,8 +88,18 @@ class BannerController extends Controller
     {
         $dataNew = $request->validate([
             'title' => 'required|string|max:20',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp',
             'status' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'image' => ':attribute phải là hình ảnh.',
+            'mimes' => ':attribute phải có định dạng: :values.',
+        ], [
+            'title' => 'Tiêu đề',
+            'image' => 'Hình ảnh',
+            'status' => 'Trạng thái'
         ]);
         // dd($dataNew);
         $banner = Banner::findOrFail($id);
@@ -89,7 +107,7 @@ class BannerController extends Controller
             $imgPath = $request->file('image')->store('image/banners', 'public');
             $dataNew['image'] = $imgPath;
 
-            if($banner->image){
+            if ($banner->image) {
                 Storage::disk('public')->delete($banner->image);
             }
         }
@@ -113,7 +131,8 @@ class BannerController extends Controller
         return redirect()->route('admin.banner.list')->with('success', 'xóa banner thành công');
     }
 
-    public function trash(Request $request){
+    public function trash(Request $request)
+    {
         $query = Banner::orderBy('deleted_at', 'desc')->onlyTrashed();
 
         if ($request->filled('title')) {
@@ -122,7 +141,7 @@ class BannerController extends Controller
 
         // // Tìm kiếm theo trạng thái
         if ($request->filled('status') && $request->filled('status') != '') {
-            $query->where('status', $request->status );
+            $query->where('status', $request->status);
         }
 
         $banners = $query->paginate(10);
@@ -130,12 +149,14 @@ class BannerController extends Controller
         return view('admin.banners.trash', compact('banners'));
     }
 
-    public function restore($id){
+    public function restore($id)
+    {
         Banner::withTrashed()->find($id)->restore();
         return redirect()->back()->with('success', 'Khôi phục banner thành công');
     }
 
-    public function forceDelete($id){
+    public function forceDelete($id)
+    {
         Banner::withTrashed()->find($id)->forceDelete();
         return redirect()->back()->with('success', 'Đã xóa banner vĩnh viễn');
     }

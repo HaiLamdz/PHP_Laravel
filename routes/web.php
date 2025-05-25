@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\clients\TrangChuController;
+use App\Http\Controllers\clients\ProductController as Product;
+use App\Http\Controllers\clients\PostController as Post;
+use App\Http\Controllers\clients\ContactController as Contact;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
@@ -20,8 +25,13 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+Route::get('/showLogin', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('loginPost');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('registerForm');
+Route::post('/register', [AuthController::class, 'register'])->name('registerPost');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
     Route::prefix('products')->name('product.')->group(function(){
         Route::get('/', [ProductController::class, 'index'])->name('list');
@@ -118,3 +128,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
     });
 });
+
+Route::get('/', [TrangChuController::class, 'index'])->name('home');
+Route::get('/shops', [Product::class, 'products'])->name('shop');
+Route::get('/product_detail/{id}', [Product::class, 'productDetail'])->name('product_detail');
+Route::post('/review', [Product::class, 'postReview'])->name('review');
+Route::get('/posts', [Post::class, 'index'])->name('post');
+Route::get('/contacts', [Contact::class, 'index'])->name('contact');
+Route::post('/contactPost', [Contact::class, 'contactPost'])->name('contactPost');

@@ -61,6 +61,22 @@ class CustomerController extends Controller
             'password' => 'required|',
             'gender' => 'required|in:Nam,Nữ',
             'status' => 'required|in:1,0'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'min' => ':attribute không được ít hơn :min ký tự.',
+            'integer' => ':attribute phải là số nguyên.',
+            'email' => ':attribute phải là email hợp lệ.',
+            'unique' => ':attribute đã tồn tại.',
+            'in' => ':attribute phải là một trong các giá trị: :values.'
+        ], [
+            'name' => 'Tên',
+            'email' => 'Email',
+            'age' => 'Tuổi',
+            'password' => 'Mật khẩu',
+            'gender' => 'Giới tính',
+            'status' => 'Trạng thái'
         ]);
 
         Customer::create($dataNew);
@@ -96,6 +112,22 @@ class CustomerController extends Controller
             'password' => 'required|',
             'gender' => 'required|',
             'status' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'min' => ':attribute không được ít hơn :min ký tự.',
+            'integer' => ':attribute phải là số nguyên.',
+            'email' => ':attribute phải là email hợp lệ.',
+            'unique' => ':attribute đã tồn tại.',
+            'in' => ':attribute phải là một trong các giá trị: :values.'
+        ], [
+            'name' => 'Tên',
+            'email' => 'Email',
+            'age' => 'Tuổi',
+            'password' => 'Mật khẩu',
+            'gender' => 'Giới tính',
+            'status' => 'Trạng thái'
         ]);
 
         Customer::findOrFail($id)->update($dataNew);

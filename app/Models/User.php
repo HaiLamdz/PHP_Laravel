@@ -6,12 +6,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
+    // định nghĩa phân quyền
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -44,5 +49,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    // xét mạc định role là role user
+    protected $attributes = [
+        'role' => self::ROLE_USER
+    ];
+
+    // kiểm tra role có phải admin hay ko
+    public function isRoleAdmin(){
+        return $this->role === self::ROLE_ADMIN;
     }
 }

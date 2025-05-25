@@ -15,9 +15,9 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-@foreach ($errors->all() as $error)
+{{-- @foreach ($errors->all() as $error)
     <li class="text-danger">{{ $error }}</li>
-@endforeach
+@endforeach --}}
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -38,25 +38,31 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Tài Khoản</label>
                                 <select class="form-control" name="customer_id" id="">
-                                    <option >Lựa Chọn Tài Khoản</option>
+                                    <option value="">Lựa Chọn Tài Khoản</option>
                                     @foreach ($customers as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('customer_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Sản Phẩm</label>
                                 <select class="form-control" name="product_id" id="">
-                                    <option>Lựa Chọn Sản Phẩm</option>
+                                    <option value="">Lựa Chọn Sản Phẩm</option>
                                     @foreach ($products as $item)
                                     <option value="{{$item->id}}">{{$item->ten_san_pham}}</option>
                                     @endforeach
                                 </select>
+                                @error('product_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Số Sao</label>
                                 <select class="form-control" name="rating" id="">
-                                    <option >Lựa chọn Sao</option>
+                                    <option value="">Lựa chọn Sao</option>
                                     <option value="1">1 sao</option>
                                     <option value="2">2 sao</option>
                                     <option value="3">3 sao</option>
@@ -78,9 +84,9 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Trạng Thái</label>
                                 <select class="form-control" name="status" id="">
-                                    <option >Lựa chọn trạng thái</option>
-                                    <option value="1">Hiện</option>
-                                    <option value="0">Ẩn</option>
+                                    <option value="">Lựa chọn trạng thái</option>
+                                    <option @selected(old('status') == '1') value="1">Hiện</option>
+                                    <option @selected(old('status') == '0') value="0">Ẩn</option>
                                 </select>
                                 @error('status')
                                 <span class="text-danger">{{ $message }}</span>

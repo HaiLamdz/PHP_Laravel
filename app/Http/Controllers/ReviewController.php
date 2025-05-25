@@ -58,6 +58,19 @@ class ReviewController extends Controller
             'rating' => 'required',
             'description' => 'nullable',
             'status' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'exists' => ':attribute không hợp lệ.',
+            'integer' => ':attribute phải là số nguyên.',
+            'min' => ':attribute không được nhỏ hơn :min.',
+            'max' => ':attribute không được lớn hơn :max.',
+            'in' => ':attribute phải là một trong các giá trị: :values.'
+        ], [
+            'customer_id' => 'Khách hàng',
+            'product_id' => 'Sản phẩm',
+            'rating' => 'Đánh giá',
+            'description' => 'Mô tả',
+            'status' => 'Trạng thái'
         ]);
 
         Review::create($dataNew);

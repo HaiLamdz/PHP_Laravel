@@ -50,10 +50,22 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $dataNew = $request->validate([
-            'title' => 'required|string|max:50',
+            'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
             'description' => 'nullable',
             'status' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'image' => ':attribute phải là một tệp hình ảnh.',
+            'mimes' => ':attribute phải có định dạng: :values.',
+            'in' => ':attribute phải là một trong các giá trị: :values.'
+        ], [
+            'title' => 'Tiêu đề',
+            'image' => 'Hình ảnh',
+            'description' => 'Mô tả',
+            'status' => 'Trạng thái'
         ]);
 
         if($request->hasFile('image')){
@@ -88,10 +100,22 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         $dataNew = $request->validate([
-            'title' => 'required|string|max:50',
+            'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
             'description' => 'nullable',
             'status' => 'required'
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string' => ':attribute phải là chuỗi.',
+            'max' => ':attribute không được vượt quá :max ký tự.',
+            'image' => ':attribute phải là một tệp hình ảnh.',
+            'mimes' => ':attribute phải có định dạng: :values.',
+            'in' => ':attribute phải là một trong các giá trị: :values.'
+        ], [
+            'title' => 'Tiêu đề',
+            'image' => 'Hình ảnh',
+            'description' => 'Mô tả',
+            'status' => 'Trạng thái'
         ]);
         $post = Post::findOrFail($id);
         if($request->hasFile('image')){

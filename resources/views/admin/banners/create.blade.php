@@ -36,8 +36,8 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mã Sản Phẩm</label>
-                                <input type="text" name="title" class="form-control" placeholder="Enter Name Product">
+                                <label for="exampleInputEmail1">Tiều Đề</label>
+                                <input type="text" name="title" class="form-control" value="{{old('title')}}" placeholder="Enter Name Product">
                                 @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -52,8 +52,9 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Trạng Thái</label>
                                 <select class="form-control" name="status" id="">
-                                    <option value="1">Hoạt Động</option>
-                                    <option value="0">Không Hoạt Động</option>
+                                    <option  value="">Lựa CHọn Trạng Thái...</option>
+                                    <option @selected(old('status') == '1') value="1">Hoạt Động</option>
+                                    <option @selected(old('status') == '0') value="0">Không Hoạt Động</option>
                                 </select>
                                 @error('status')
                                 <span class="text-danger">{{ $message }}</span>

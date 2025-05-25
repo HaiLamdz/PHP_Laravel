@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Trạng Thái</label>
                                 <select class="form-control" name="status" id="">
-                                    <option >Lựa chọn trạng thái</option>
+                                    <option value="">Lựa chọn trạng thái</option>
                                     <option value="1">Hiện</option>
                                     <option value="0">Ẩn</option>
                                 </select>

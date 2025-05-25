@@ -15,7 +15,7 @@
         <img src="{{asset('assets/BE/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">{{Auth::user()->name}}</a>
       </div>
     </div>
 
@@ -241,6 +241,15 @@
                 <i class="far fa-circle nav-icon"></i>
                 <p>Thùng Rác</p>
               </a>
+            </li>
+          </ul>
+          <ul class="nav">
+            <li class="nav-item">
+              <hr>
+              <form action="{{route('logout')}}" method="post">
+                @csrf
+                  <button style="margin-left: 30px" type="submit" class=" btn btn-danger">Đăng Xuất</button>
+              </form>
             </li>
           </ul>
         </li>

@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1000px; /* Tăng chiều rộng tối đa */
+    margin: 0 auto;
+    padding: 30px 20px; /* Tăng padding để thoáng hơn */
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em; /* Tăng kích thước tiêu đề */
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sub-title {
+    font-size: 1.2em; /* Tăng kích thước phụ đề */
+    color: #666;
+    margin-bottom: 30px; /* Tăng khoảng cách dưới */
+}
+
+.review-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.review-card {
+    background: #fff;
+    border-radius: 15px; /* Tăng độ bo tròn */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ đậm hơn */
+    padding: 20px; /*Tăng padding bên trong*/
+    /* width: 28%; Giảm một chút để có khoảng trống */
+    text-align: left;
+    min-width: 0;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: transform 0.2s; /* Hiệu ứng khi hover */
+}
+
+.review-card:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi di chuột qua */
+}
+
+.rating {
+    color: #ffd700;
+    font-size: 1.5em; /* Tăng kích thước sao */
+    margin-bottom: 15px;
+}
+
+.review-text {
+    font-size: 1em; /* Tăng kích thước chữ */
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.5; /* Tăng khoảng cách dòng */
+}
+
+.author {
+    font-size: 0.9em; /* Tăng kích thước chữ tác giả */
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Tăng khoảng cách giữa ảnh và text */
+}
+
+.product-info img {
+    width: 60px; /* Tăng kích thước ảnh */
+    height: 60px;
+    border-radius: 8px; /* Tăng độ bo tròn ảnh */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+.product-info p {
+    margin: 0;
+    font-size: 0.9em; /* Tăng kích thước chữ */
+}
+
+.product-info p:last-child {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1em; /* Tăng kích thước giá */
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        width: 45%; /* Điều chỉnh khi màn hình nhỏ hơn */
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        width: 100%; /* Một thẻ trên một hàng khi màn hình rất nhỏ */
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .sub-title {
+        font-size: 1em;
+    }
+}
